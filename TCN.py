@@ -108,11 +108,24 @@ class TemporalConvNet(nn.Module):
         """
         return self.network(x)
 
+device= torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# conv1 = TemporalConvNet(5, [25, 25, 25]).to(device)
+# test_input=torch.ones(1000,5,10000).to(device)
+# summary(conv1, (5, 100))
+#
+# output=conv1(test_input)
 
-conv1 = TemporalConvNet(1, [25, 25, 25])
-output1 = conv1(torch.rand(100, 1, 100))
-summary(conv1, (1, 100))
-print(output1.size())
+
+test_fletton=nn.Sequential(TemporalConvNet(5, [25, 25, 25])).to(device)
+test_input=torch.ones(1000,5,10000).to(device)
+output=test_fletton(test_input)
+
+
+
+
+
+
+# print(output1.size())
 
 
 # from torch.autograd import Variable
